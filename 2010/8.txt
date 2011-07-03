@@ -1,0 +1,20 @@
+8. [A problem posed by Jon Bentley] The diameter of a set of points on the plane is the
+distance between its two most widely separated points. For example, the diameter of the
+set
+{(1, 1), (0, 0), (2, 3), (3, 4), (1, 0)}
+is 5, the distance between the points (0,0) and (3,4). Given a set of points, you are to
+compute its diameter to within an accuracy of ±5%. There is a 5-second execution-time
+limit on this problem.
+The input to your program will consist of up to 100,000 pairs of integers giving x-y
+coordinates of points in free format (that is, separated by whitespace only, with no commas
+or parentheses). The output should be a single ﬂoating-point (or integer) number giving
+an approximate diameter.
+Example:
+
+Input 
+1 1 0 0 2 3
+3 4 1
+0
+
+Output
+5.0
