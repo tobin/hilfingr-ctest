@@ -18,7 +18,7 @@ set<string> find_palindromes(string s) {
       vector<string> int_results;
       /* Search outward from the center, verifying that the Palindrome 
          property is maintained. */
-      int maxlen = min(c+1, s.length() - c + k);
+      int maxlen = min(c+1, (int)s.length() - c + k);
       for (int len=1; len < maxlen && (s.at(c-len)==s.at(c+len-k)); len++)  {
         /* Every intermediate result is a Palindrome */
 	int_results.push_back(s.substr(c-len, 2*len+1-k));
