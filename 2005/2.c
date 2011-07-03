@@ -32,7 +32,6 @@ int check(int N, int k, int bindings[], struct restraint problem[]) {
 int solve(int N, int k, int bindings[], struct restraint problem[]) {
   int v;
 
-  printf("check\n");
   if (!check(N, k, bindings, problem))
     return 0;
 
