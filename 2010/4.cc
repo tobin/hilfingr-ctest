@@ -1,4 +1,5 @@
-#include "contest.h"
+#include <stdio.h>
+#include <string.h>
 
 // Binomial coefficient
 int choose(int n, int k) {

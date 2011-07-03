@@ -1,0 +1,14 @@
+8. You are given a base-36 numeral (the digits are 0–9, a–z, with a worth 10, b 11, etc.)
+and told that it comes from the set of all numbers having the same digits (that is, the same
+number of each digit the given number has). We allow leading 0’s. You are to print out
+the next number from that set (in ascending order). For example, given 03snd3fk5ee2,
+you should print 03snd3fke25e.
+
+The input will consist of any number of base-36 numerals up to 128 digits long in free
+format. For each, compute the next number in its set (you may assume there is one) in
+the format shown below:
+
+Example.
+Input 			Output
+12 03snd3fk5ee2 	12 -> 21
+			03snd3fk5ee2 -> 03snd3fke25e
