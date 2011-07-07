@@ -1,0 +1,47 @@
+Programming Contest Solutions by Chris Spitzer
+Fall 1991
+Notes
+
+All programs work as specified in Hilfinger's F91 problem document.  So,
+they all read from stdin and print to stdout.
+
+Problem 1: For a given number, return it's position in the sequence of all
+           integers with the same number of bits.
+Tricky problem.  Turns out to be a question of combinations.  My answer is
+as follows.  For a given string, find it's length and the number of on-bits.  
+Using combinatorial math (hence the precalculation of pascal's triangle),
+determine the minimum number of combinations needed to yeild a string of the
+given length for the given number of on-bits.  Now strip off the leading one
+and recursively add the this minimum the number of combinations required to
+achieve the substring.
+
+Problem 2: Find all words from the dictionary that can be formed with the
+           letters of a given word.
+A slow obvious algorithm works fine.  Basically, just generate counts of the 
+number of each letter (abstracted to 'keys') in the given word, and compare
+to a count in the dictionary word.  If the former is greater than the latter
+for each key, then it's a match.  The only small effieciency increase is
+segmenting the dictionary words into 26 subsets, and eliminating a set if
+the first key of the set's dictionary word is not in our given word.
+
+Problem 3: Read strings separated by &'s and print out a column-centered
+           version.
+Nothing hard here.  Parsed input by hand, but that's no big deal.
+
+Problem 4: Return the kth prime.
+Thought it was tricky until I realized the oldest prime algorithm in the
+book works fine.  The solution is just the sieve of erastophenes turned
+upside down.  Needs almost no memory and works in a time under that
+specified in the problem description for k=250000 (accounting for the
+increase in the speed of computers).
+
+Problem 5: Solves Bounded Post's Correspondence Problem
+There is some ugly code in here (first time I can recall using a 'goto'
+statement), but it's not a hard problem.  Just read input and step
+through solutions until one satisfies the problem conditions.  Lots of
+room for optimization, but it's fairly fast as is.
+
+Problem 6: Find the length of the shortest path out of a 2-D maze
+Hmm, shortest path on a grid with local connectiveness?  Forgot this 'maze'
+nonsense and let's just call it a graph.  And so we run a classic BFS on
+an array.
