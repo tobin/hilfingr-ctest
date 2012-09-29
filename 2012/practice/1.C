@@ -1,55 +1,35 @@
 #include <contest.h>
 
-int int_compare(const void *a, const void *b) {
-  return (*(int *)a - *(int *)b);
-}
-
 int main(int argc, char **argv) {
-
+  
+  vector<int> data;
   double sum = 0;
-  int max_n = 1;
-  int *arr = (int *)calloc(max_n, sizeof *arr);
   int n = 0;
-
-  // read input
   int x;
-  while (scanf("%d", &x)==1) {
-    n++;
-    if (n > max_n) {
-      max_n *= 2;
-      arr = (int *)realloc(arr, max_n * sizeof *arr);
-    }
-    arr[n-1] = x;
+  while (cin >> x) {
+    data.push_back(x);
     sum += x;
+    n ++;
   }
   double mean = sum / n;
 
-  qsort(arr, n, sizeof *arr, int_compare);
+  sort(data.begin(), data.end());
 
-  // binary search
-  int p = 0;
-  int q = n-1;
-  int c;
-
-  while (c = p + (q-p)/2, q-p > 1 ) 
-    if (arr[c] > mean)   // found item is too big
-      q = c;             // found item is an upper bound
-    else 
-      p = c;
-
+  // find the first element greater than or equal to the mean
+  auto i = data.begin();
+  while (*i < mean) i++;
   
-  // probably not the most elegant
-  if (arr[p] == arr[q])
-    printf("%d\n", arr[p]);
-  else
-    if ( mean - arr[p] == arr[q] - mean) 
-      printf("%d %d\n", arr[p], arr[q]);
+  if (*i == mean) 
+    cout << *i << endl;
+  else {
+    double d1 = mean - *(i-1);  // distance to element below the mean
+    double d2 = *i - mean;      // distance to element above the mean
+    if (d1 == d2)
+      cout << *(i-1) << " " << (*i) << endl;
     else
-      if (mean - arr[p] < arr[q] - mean)
-	printf("%d\n", arr[p]);
-      else
-	printf("%d\n", arr[q]);
-  
+      cout << (d1 < d2 ? *(i-1) : *i ) << endl;
+  }
+
   return 0;
 	
 }
