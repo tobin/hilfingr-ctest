@@ -1,6 +1,20 @@
 #include <contest.h>
-#include <assert.h>
 
+/* Practice problem: Compute the diameter of a set
+   
+   A very similar problem occurred in the 2010 contest.  This problem
+   has these differences:
+   - The number of elements in each set is not bounded
+   - Multiple sets are given, one per line
+   - The desired accuracy is given as two decimal places rather than
+     as a percentage.
+
+   These differences are rather annoying.  Here I simply use some
+   fixed-length buffers and hope that they are big enough.  The input
+   format is a mix of line-oriented and token-oriented, which is
+   annoying to deal with.  Unfortunately the contest environment
+   doesn't allow the use of a modern "getline()" function.  
+ */
 const double inf = 1.0/0.0;
 
 double coords[2][1024];
@@ -59,7 +73,6 @@ int main(int argc, char **argv) {
       n++;
     }
 
-    assert(n%2==0);
     n /= 2;
     
     D for (int i=0; i<n; i++) 
