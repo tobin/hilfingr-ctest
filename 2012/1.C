@@ -78,7 +78,7 @@ int main(int argc, char **argv) {
       D cout << "City " << x << " to city " << y << " is " << distance << " miles" << endl;
     }
     D cout << "There are " << n_cities << " cities." << endl;
-    cout << "Set #" << ++n << ": " << max_distance(roads, n_cities) << endl;
+    cout << "Set #" << ++n << ": " << max_distance(roads, n_cities) << " miles" << endl;
   
   }
   return 0;
