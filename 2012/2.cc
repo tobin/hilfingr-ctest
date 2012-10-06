@@ -47,8 +47,8 @@ int prod(factorlist x) {
 
 factorlist factorize(unsigned int N) {
   factorlist result;
-  
-  for (unsigned int p=2; (N != 1) && (p*p <= N); p++) 
+
+  for (unsigned int p=2; (N != 1) && (p*p <= N); p += (p==2 ? 1 : 2)) 
     while (N%p == 0) {
       N /= p;
       result.insert(p);
