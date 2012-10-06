@@ -1,7 +1,10 @@
 /* Fractions
 
    This program accepts a sequence of fractions on standard input, and
-   outputs the product of these fractions.  
+   outputs the product of these fractions.  The key feature is that the
+   calculation should succeed even if some intermediate product of the
+   numerators or denominators would overflow.   The approach taken is 
+   to factor everything into prime factors.
    
    Tobin Fricke - 2012-10-05
  */
