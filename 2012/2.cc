@@ -17,6 +17,35 @@ using namespace std;
 
 typedef multiset<unsigned int> factorlist;
 
+// operator- = set difference
+factorlist operator-(factorlist const &a, factorlist const &b) {
+  factorlist tmp;
+  set_difference(a.begin(), a.end(),  
+		 b.begin(), b.end(), inserter(tmp, tmp.begin()));
+  return tmp;
+}
+
+// operator+ = merge
+factorlist operator+(factorlist const &a, factorlist const &b) {
+  factorlist tmp;
+  merge(a.begin(), a.end(),  
+	b.begin(), b.end(), inserter(tmp, tmp.begin()));
+  return tmp;
+}
+
+// operator& = intersection
+factorlist operator&(factorlist const &a, factorlist const &b) {
+  factorlist tmp;
+  set_intersection(a.begin(), a.end(),  
+		   b.begin(), b.end(), inserter(tmp, tmp.begin()));
+  return tmp;
+}
+
+// product of elements
+int prod(factorlist x) {
+  return accumulate(x.begin(), x.end(), 1, multiplies<int>());
+}
+
 factorlist factorize(unsigned int N) {
   factorlist result;
   
@@ -36,38 +65,18 @@ int main(void) {
   
   unsigned int n, d;
   factorlist num, den;
+
   while (2==scanf("%d/%d",&n,&d)) {
-    factorlist f = factorize(n);
-    num.insert(f.begin(), f.end());
-    f = factorize(d);
-    den.insert(f.begin(), f.end());
+    num = num + factorize(n);
+    den = den + factorize(d);
   }
 
-  // Find the common factors
+  factorlist com = num & den;     // Find the common factors
 
-  factorlist com; 
-  set_intersection(num.begin(), num.end(), 
-		   den.begin(), den.end(),
-		   inserter(com, com.begin()));
-
-  // Remove the common factors from the numerator and denominator
-  factorlist tmp;  // why can't we do it in-place?
-  set_difference(num.begin(), num.end(), 
-		 com.begin(), com.end(), 
-		 inserter(tmp, tmp.begin()));
-  num = tmp;
-
-  tmp.clear();
-  set_difference(den.begin(), den.end(), 
-		 com.begin(), com.end(), 
-		 inserter(tmp, tmp.begin()));
-  den = tmp;
+  num = num - com;                // Remove the common factors 
+  den = den - com;
   
-  // Multiply the remaining factors together
-  n = accumulate(num.begin(), num.end(), 1, multiplies<int>());
-  d = accumulate(den.begin(), den.end(), 1, multiplies<int>());
-  
-  cout << n << "/" << d << endl;
-  return 0;
-		   
+  cout << prod(num) << "/" << prod(den) << endl;
+
+  return 0;		   
 }
