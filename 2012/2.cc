@@ -18,7 +18,7 @@ using namespace std;
 typedef multiset<unsigned int> factorlist;
 
 // operator- = set difference
-factorlist operator-=(factorlist &a, factorlist const &b) {
+factorlist& operator-=(factorlist &a, factorlist const &b) {
   factorlist tmp;
   set_difference(a.begin(), a.end(),  
 		 b.begin(), b.end(), inserter(tmp, tmp.begin()));
@@ -27,7 +27,7 @@ factorlist operator-=(factorlist &a, factorlist const &b) {
 }
 
 // operator+ = insert
-factorlist operator+=(factorlist &lhs, const factorlist& rhs) {
+factorlist& operator+=(factorlist &lhs, const factorlist& rhs) {
   lhs.insert(rhs.begin(), rhs.end());
   return lhs;
 }
