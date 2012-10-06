@@ -18,19 +18,18 @@ using namespace std;
 typedef multiset<unsigned int> factorlist;
 
 // operator- = set difference
-factorlist operator-(factorlist const &a, factorlist const &b) {
+factorlist operator-=(factorlist &a, factorlist const &b) {
   factorlist tmp;
   set_difference(a.begin(), a.end(),  
 		 b.begin(), b.end(), inserter(tmp, tmp.begin()));
-  return tmp;
+  swap(tmp, a);
+  return a;
 }
 
-// operator+ = merge
-factorlist operator+(factorlist const &a, factorlist const &b) {
-  factorlist tmp;
-  merge(a.begin(), a.end(),  
-	b.begin(), b.end(), inserter(tmp, tmp.begin()));
-  return tmp;
+// operator+ = insert
+factorlist operator+=(factorlist &lhs, const factorlist& rhs) {
+  lhs.insert(rhs.begin(), rhs.end());
+  return lhs;
 }
 
 // operator& = intersection
@@ -67,14 +66,14 @@ int main(void) {
   factorlist num, den;
 
   while (2==scanf("%d/%d",&n,&d)) {
-    num = num + factorize(n);
-    den = den + factorize(d);
+    num += factorize(n);
+    den += factorize(d);
   }
 
   factorlist com = num & den;     // Find the common factors
 
-  num = num - com;                // Remove the common factors 
-  den = den - com;
+  num -= com;                // Remove the common factors 
+  den -= com;
   
   cout << prod(num) << "/" << prod(den) << endl;
 
