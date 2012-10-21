@@ -1,4 +1,5 @@
 #include <contest.h>
+#include <string.h>
 
 /* Practice problem: Compute the diameter of a set
    
@@ -40,8 +41,8 @@ double diameter(int n) {
 	max_i = i;
       }
     }
-    double diameter = sqrt(pow(coords[0][max_i]-coords[0][min_i], 2) + 
-			   pow(coords[1][max_i]-coords[1][min_i], 2));
+    double diameter = hypot(coords[0][max_i]-coords[0][min_i], 
+			    coords[1][max_i]-coords[1][min_i]);
 
     if (diameter > max_diameter) 
       max_diameter = diameter;

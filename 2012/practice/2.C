@@ -25,9 +25,8 @@ double diameter(vector<coord> coords) {
 	max_i = i;
       }
     }
-    double diameter = sqrt(pow(max_i->first - min_i->first, 2) + 
-			   pow(max_i->second - min_i->second, 2));
-
+    double diameter = hypot(max_i->first - min_i->first, 
+			    max_i->second - min_i->second);
 
     if (diameter > max_diameter) 
       max_diameter = diameter;
