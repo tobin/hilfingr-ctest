@@ -6,12 +6,18 @@
 
 using namespace std;
 
-// compiler didn't like a map of pairs to ints
-typedef unordered_map<string, int> Map;
+struct PairHasher {
+  size_t operator()(const pair<string, string>& p) const {
+    hash<string> hash_fn;
+    return hash_fn(p.first) + hash_fn(p.second);
+  }
+};
+
+typedef unordered_map<pair<string,string>, int, PairHasher> Map;
 
 int edit_distance(string s, string t) {
   static Map memo;
-  auto i = memo.find(s+","+t);
+  auto i = memo.find(make_pair(s,t));
   if (i != memo.end())
     return i->second;
 
@@ -32,7 +38,7 @@ int edit_distance(string s, string t) {
     result = (c < result ? c : result);
   }
 
-  memo[s+","+t] = result;
+  memo[make_pair(s,t)] = result;
   return result;
 
 }
