@@ -3,6 +3,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -34,8 +35,8 @@ int edit_distance(string s, string t) {
     int a = edit_distance(s.substr(1,s.length()-1), t) + 1;
     int b = edit_distance(s, t.substr(1,t.length()-1)) + 1;
     int c = edit_distance(s.substr(1,s.length()-1), t.substr(1,t.length()-1)) + cost;
-    result = (a < b ? a : b);
-    result = (c < result ? c : result);
+
+    result = min({a, b, c});
   }
 
   memo[make_pair(s,t)] = result;
