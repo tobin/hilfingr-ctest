@@ -30,7 +30,7 @@ ostream& operator<<(ostream& ost, const point &p) {
   return ost;
 }
 
-double angle_from(point src, point pivot, point dst) {
+double angle_from(point dst, point pivot, point src) {
   src = src - pivot;
   dst = dst - pivot;
   double x = src.first * dst.first  + src.second * dst.second;  // dot product   = |a| |b| cos theta
@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
 
       // Keep track of a starting point (upper left)
       for (int i=0; i<2; i++) {
-	if ((x[i] < start_x) || ((x[i] == start_x) && (y[i] < start_y))) {
+	if ((x[i] < start_x) || ((x[i] == start_x) && (y[i] > start_y))) {
 	  start_x = x[i];
 	  start_y = y[i];
 	}
@@ -86,10 +86,11 @@ int main(int argc, char **argv) {
 
     point start = make_pair(start_x, start_y);
     point current = start;   
-    point prev = make_pair(current.first - 1, current.second);  // fake
-    bool first_time = true;
+    point prev = make_pair(current.first, current.second - 1);  // approach first node from below
 
     do {
+      if (debug)
+	cout << "current = " << current << endl;
       // Sort the list of reachable nodes by their angle from the
       // starting vertex
       auto reachable = graph[current];
@@ -98,18 +99,12 @@ int main(int argc, char **argv) {
       point next;
       
       // remove back-link
-      while (angle_from(prev, current, reachable.front()) == 0)
-	reachable.pop_front();
+      reachable.pop_front();
       
       // get the next forward link
       next = reachable.front(); 
       reachable.pop_front();
       
-      if (first_time) {
-	reachable.pop_front();
-	first_time = false;
-      }
-
       // If there are any more links, we have loops to go around      
       for (auto inner_start : reachable) {
 	auto inner_current = inner_start;
