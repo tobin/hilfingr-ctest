@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_map>
+#include <map>
 #include <list>
 #include <algorithm>
 
@@ -59,7 +60,7 @@ int main(int argc, char **argv) {
   int cases = 0;
   while ((cin >> n_segments) && (n_segments > 0)) {
     cout << "Case " << ++cases << ":" << endl;
-    unordered_map<int, int> histogram;
+    map<int, int> histogram;
     Map graph;
     int start_x = 99999;
     int start_y;
@@ -136,7 +137,6 @@ int main(int argc, char **argv) {
     // Output the histogram
     int total = 0;
     for (auto p : histogram) {
-      // FIXME: This is not guaranteed to be in the correct order!
       cout << "  Lots with " << p.first << " surveyor's lines = " << p.second << endl;
       total += p.second;
     }
