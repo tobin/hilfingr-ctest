@@ -7,9 +7,11 @@
 using namespace std;
 
 // Test whether the naive solution will pass the automated testing.
+//   * Yes, it did.
+
 // Test whether C++11 is allowed.
-//   * GCC Version is less than 4.7
-//   * No range-based for-statements
+//   * GCC Version is less than 4.7, compiled with -std=c++0x.
+//   * No range-based for-statements.
 
 int main(int argc, char **argv) {
   int N = 0;
