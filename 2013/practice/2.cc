@@ -8,6 +8,8 @@ using namespace std;
 
 // Test whether the naive solution will pass the automated testing.
 // Test whether C++11 is allowed.
+//   * GCC Version is less than 4.7
+//   * No range-based for-statements
 
 int main(int argc, char **argv) {
   int N = 0;
@@ -23,10 +25,10 @@ int main(int argc, char **argv) {
 
     // Calculate the diameter by brute force
     int max_dist = 0;
-    for (auto p: points)
-      for (auto q: points) {
-	double dx = q.first - p.first;
-	double dy = q.second - p.second;
+    for (auto p = points.begin(); p != points.end(); p++) 
+      for (auto q = points.begin(); q != points.end(); q++) {
+	double dx = q->first - p->first;
+	double dy = q->second - p->second;
 	double dist = dx*dx + dy*dy;
 	if (dist > max_dist)
 	  max_dist = dist;
