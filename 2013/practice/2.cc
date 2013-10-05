@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
       points.push_back(make_pair(x,y));
 
     // Calculate the diameter by brute force
-    int max_dist = 0;
+    double max_dist = 0;
     for (auto p = points.begin(); p != points.end(); p++) 
       for (auto q = points.begin(); q != points.end(); q++) {
 	double dx = q->first - p->first;
