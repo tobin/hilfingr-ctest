@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define D if (1)
+#define D if (0)
 
 int main(int argc, char **argv) {
   
