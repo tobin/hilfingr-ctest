@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <stdlib.h>
+#include <string>
 
 #define D if (0)
 using namespace std;
@@ -11,70 +12,68 @@ struct node {
   int L;
   int n_children;
   double x;
-  double min_x, max_x;
-  struct node **children;
+  node **children;
+  void print();
+  double calc(double, int);
 };
 
-node *read_tree() {
-  node *me = new node;
-
-  if (!(cin >> me->n_children >> me->L)) {
-    delete(me);
-    return 0;
+// Read a tree from an input stream
+istream& operator >>(istream &is, node &me) {
+  
+  if (!(is >> me.n_children >> me.L)) {
+    return is;  // failure
   }
 
-  me->children = (node **)calloc(sizeof(node *), me->n_children);
-  me->x = 0;
+  me.children = new node*[me.n_children];
+  me.x = 0;
 
-  for (int n=0; n<me->n_children; n++) 
-    me->children[n] = read_tree();
+  for (int n=0; n<me.n_children; n++) {
+    me.children[n] = new node;
+    is >> *me.children[n];
+  }
 
-  return me;
+  return is;
 }
 
-void print_tree(node *tree) {
-  cout << "   " << tree->L << " " << fixed << setprecision(4) << tree->x << endl;
-  for (int i=0; i < tree->n_children; i++) 
-    print_tree(tree->children[i]);
+void node::print() {
+  cout << "   " << this->L << " " << fixed << setprecision(4) << this->x << endl;
+  for (int i=0; i < this->n_children; i++) 
+    this->children[i]->print();
 }
 
 // calculate positions, return next available x position to the right
-double calc_pos(node *tree, double offset, int depth) {
-  D for (int i=0; i<depth; i++) cout << " ";
-  D cout << "calc_pos(" << tree->L << ", " << offset << ")" << endl;
+double node::calc(double offset = 0, int depth = 0) {
+  D cout << string(depth, ' ') << "calc(" << this->L << ", " << offset << ")" << endl;
 
-  tree->x = offset;
+  this->x = offset;
 
   // first ask the children to figure out how big they are
-  for (int i=0; i < tree->n_children; i++) {
+  for (int i=0; i < this->n_children; i++) {
     if (i>0) offset++;
-    offset = calc_pos(tree->children[i], offset, depth+1);
+    offset = this->children[i]->calc(offset, depth+1);
   }
 
   // "Any inner node is positioned half way between its leftmost and
   // rightmost (immediate) child."
-  if (tree->n_children > 0) {
-    double x1 = tree->children[0]->x;
-    double x2 = tree->children[tree->n_children-1]->x;
-    //    D for (int i=0; i<depth+1; i++) cout << " ";
-    //D cout << "My children have positions " << x1 << " and " << x2 << endl;
-    tree->x = (x1+x2)/2.0; 
+  if (this->n_children > 0) {
+    double leftmost = this->children[0]->x;
+    double rightmost = this->children[this->n_children-1]->x;
+    this->x = (leftmost+rightmost)/2.0; 
   } 
 
-  D for (int i=0; i<depth+1; i++) cout << " ";
-  D cout << "Node " << tree->L << " has x = " << tree->x << endl;
+  D cout << string(depth+1, ' ') << "Node " << this->L << " has x = " << this->x << endl;
 
   return offset;
 }
 
 
 int main(int argc, char **argv) {
-  node *tree;
+  node *tree = new node;
   int n = 0;
-  while ((tree = read_tree())) {
+  while (cin >> *tree) {
     cout << "Tree " << ++n << ":" << endl;
-    calc_pos(tree, 0, 0);
-    print_tree(tree);
+    tree->calc();
+    tree->print();
   }
   return 0; 
 }
