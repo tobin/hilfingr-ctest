@@ -1,0 +1,28 @@
+     1	cs188-hd (Lewin Gan): 9 problems in 49823 sec. with 12 submissions
+     2	ctest-ak (Biye Jiang): 9 problems in 60340 sec. with 14 submissions
+     3	ctest-af (Yan Duan): 9 problems in 86186 sec. with 15 submissions
+     4	cs170-hp (Chen-Hsi Bi): 8 problems in 67653 sec. with 18 submissions
+     5	cs170-gi (Preetum Nakkiran): 7 problems in 59512 sec. with 10 submissions
+     6	cs199-zq (Jing-Lun Gao): 6 problems in 64885 sec. with 19 submissions
+     7	ctest-aa (Tobin Fricke): 6 problems in 68951 sec. with 9 submissions
+     8	ctest-ag (Jingyan Wang): 5 problems in 41645 sec. with 6 submissions
+     9	cs184-aj (Pierre Karashchuk): 5 problems in 43775 sec. with 7 submissions
+    10	cs164-db (Zongheng Yang): 5 problems in 47787 sec. with 8 submissions
+    11	cs199-jl (Raphael Townshend): 5 problems in 51306 sec. with 11 submissions
+    12	cs164-ep (Wonjohn Choi): 5 problems in 53216 sec. with 9 submissions
+    13	cs61b-eh (Joseph Hui): 5 problems in 53571 sec. with 5 submissions
+    14	cs170-av (Evan Ye): 5 problems in 60286 sec. with 15 submissions
+    15	cs61b-gs (Kunal Marwaha): 4 problems in 40712 sec. with 7 submissions
+    16	cs61b-gg (Rikon Chao): 4 problems in 41910 sec. with 7 submissions
+    17	ctest-ab (Edwin Liao): 4 problems in 46189 sec. with 7 submissions
+    18	ee122-an (Soumya Basu): 4 problems in 48293 sec. with 11 submissions
+    19	cs61a-aez (Xinyang Geng): 3 problems in 27402 sec. with 3 submissions
+    20	cs61a-ds (YAQI MIAO): 3 problems in 28921 sec. with 5 submissions
+    21	cs162-gq (cs162-gq): 3 problems in 34272 sec. with 6 submissions
+    22	cs170-aq (cs170-aq): 3 problems in 36203 sec. with 6 submissions
+    23	cs170-kw (Alec Mouri): 3 problems in 46994 sec. with 10 submissions
+    24	cs61b-ql (Neil Thomas): 2 problems in 27499 sec. with 4 submissions
+    25	cs164-bl (Vaibhav Agarwal): 2 problems in 29638 sec. with 5 submissions
+    26	cs61a-ajr (Shengyu Wang): 2 problems in 33562 sec. with 4 submissions
+    27	cs150-bm (Siyuan He): 1 problems in 9939 sec. with 2 submissions
+    28	cs61b-of (Yifan Hong): 1 problems in 10866 sec. with 3 submissions
